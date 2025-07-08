@@ -1,0 +1,25 @@
+{
+  "validation_results": {
+    "XGBoost": {
+      "R2": 0.2072077645010787,
+      "RMSE": 0.9008833167858529,
+      "MAE": 0.5874948231353716
+    },
+    "RandomForest": {
+      "R2": 0.19216316967963853,
+      "RMSE": 0.90939104867215,
+      "MAE": 0.5883044658342247
+    },
+    "LinearRegression": {
+      "R2": 0.14625013370660944,
+      "RMSE": 0.9348763528830073,
+      "MAE": 0.6123473272350113
+    }
+  },
+  "test_results": null,
+  "transform_info": {
+    "log_transform": "log",
+    "target_scaler_mean": 2.6400146123664094,
+    "target_scaler_scale": 0.6329405081474748
+  }
+}

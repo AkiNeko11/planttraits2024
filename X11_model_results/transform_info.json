@@ -1,0 +1,5 @@
+{
+  "log_transform": "log",
+  "target_scaler_mean": 2.6496762914135115,
+  "target_scaler_scale": 0.5510636285918346
+}

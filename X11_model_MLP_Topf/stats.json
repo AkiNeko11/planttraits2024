@@ -1,0 +1,26 @@
+{
+  "y_mean": 2.728729843776573,
+  "y_std": 0.5033763965285944,
+  "feature_names": [
+    "SOIL_silt_0.5cm_mean_0.01_deg",
+    "SOIL_silt_30.60cm_mean_0.01_deg",
+    "WORLDCLIM_BIO4_temperature_seasonality",
+    "SOIL_sand_15.30cm_mean_0.01_deg",
+    "SOIL_silt_60.100cm_mean_0.01_deg",
+    "SOIL_silt_15.30cm_mean_0.01_deg",
+    "SOIL_silt_100.200cm_mean_0.01_deg",
+    "SOIL_ocd_60.100cm_mean_0.01_deg",
+    "SOIL_sand_100.200cm_mean_0.01_deg",
+    "MODIS_2000.2020_monthly_mean_surface_reflectance_band_04_._month_m3",
+    "SOIL_silt_5.15cm_mean_0.01_deg",
+    "SOIL_ocd_100.200cm_mean_0.01_deg",
+    "MODIS_2000.2020_monthly_mean_surface_reflectance_band_04_._month_m5",
+    "SOIL_sand_5.15cm_mean_0.01_deg",
+    "SOIL_sand_30.60cm_mean_0.01_deg",
+    "SOIL_sand_60.100cm_mean_0.01_deg",
+    "SOIL_sand_0.5cm_mean_0.01_deg",
+    "SOIL_nitrogen_0.5cm_mean_0.01_deg",
+    "WORLDCLIM_BIO15_precipitation_seasonality",
+    "MODIS_2000.2020_monthly_mean_surface_reflectance_band_01_._month_m2"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "predictions_count": 6545,
+  "predictions_mean": 15.812545776367188,
+  "predictions_std": 3.909821033477783,
+  "predictions_min": 5.651812553405762,
+  "predictions_max": 31.81664276123047,
+  "model_stats": {
+    "y_mean": 2.728729843776573,
+    "y_std": 0.5033763965285944
+  }
+}
