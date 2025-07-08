@@ -1,0 +1,25 @@
+X11_mean 最重要的20个特征（目标变量对数标准化）:
+对数变换方法: log
+标准化均值: 2.649676
+标准化标准差: 0.551064
+
+ 1. SOIL_silt_0.5cm_mean_0.01_deg
+ 2. SOIL_silt_30.60cm_mean_0.01_deg
+ 3. WORLDCLIM_BIO4_temperature_seasonality
+ 4. SOIL_sand_15.30cm_mean_0.01_deg
+ 5. SOIL_silt_60.100cm_mean_0.01_deg
+ 6. SOIL_silt_15.30cm_mean_0.01_deg
+ 7. SOIL_silt_100.200cm_mean_0.01_deg
+ 8. SOIL_ocd_60.100cm_mean_0.01_deg
+ 9. SOIL_sand_100.200cm_mean_0.01_deg
+10. MODIS_2000.2020_monthly_mean_surface_reflectance_band_04_._month_m3
+11. SOIL_silt_5.15cm_mean_0.01_deg
+12. SOIL_ocd_100.200cm_mean_0.01_deg
+13. MODIS_2000.2020_monthly_mean_surface_reflectance_band_04_._month_m5
+14. SOIL_sand_5.15cm_mean_0.01_deg
+15. SOIL_sand_30.60cm_mean_0.01_deg
+16. SOIL_sand_60.100cm_mean_0.01_deg
+17. SOIL_sand_0.5cm_mean_0.01_deg
+18. SOIL_nitrogen_0.5cm_mean_0.01_deg
+19. WORLDCLIM_BIO15_precipitation_seasonality
+20. MODIS_2000.2020_monthly_mean_surface_reflectance_band_01_._month_m2
