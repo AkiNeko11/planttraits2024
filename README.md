@@ -40,16 +40,33 @@ planttraits2024/
 ## 模型架构
 
 ### XGBoost
-- **todo网络结构**: 512 → 256 → 128 → 64 → 1  
-
+- **算法**: 梯度提升决策树
+- **目标函数**: reg:squarederror (均方误差回归)
+- **评估指标**: RMSE
+- **主要参数**:
+  - max_depth: 6 (树的最大深度)
+  - learning_rate: 0.1 (学习率)
+  - subsample: 0.8 (样本采样比例)
+  - colsample_bytree: 0.8 (特征采样比例)
+  - num_boost_round: 200 (提升轮数)
+  - early_stopping_rounds: 20 (早停轮数)
+- **树方法**: hist (直方图算法)
 
 ### RandomForest
-- **todo网络结构**: 512 → 256 → 128 → 64 → 1
-
+- **算法**: 随机森林回归
+- **主要参数**:
+  - n_estimators: 100 (决策树数量)
+  - random_state: 42 (随机种子)
+  - n_jobs: -1 (使用所有CPU核心)
+- **特征选择**: 随机特征子集
+- **集成方式**: 平均预测
 
 ### LinearRegression
-- **todo网络结构**: 512 → 256 → 128 → 64 → 1
-
+- **算法**: 线性回归
+- **特征预处理**: StandardScaler标准化
+- **正则化**: 无正则化项
+- **求解方法**: 最小二乘法
+- **适用场景**: 线性关系较强的数据
 
 ### MLP
 - **网络结构**: 512 → 256 → 128 → 64 → 1
@@ -60,6 +77,10 @@ planttraits2024/
 - **早停机制**: patience=60
 
 ### 数据预处理
+- **特征**: 使用第2-164列作为特征（163个特征）
+- **目标变量**: log1p变换 + StandardScaler标准化
+- **缺失值处理**: 中位数填充
+- **特征标准化**: 仅线性回归使用StandardScaler，其他模型使用原始特征值
 
 ## 使用方法
 
@@ -125,32 +146,96 @@ python X11_MLP_predict.py
 
 ## 模型性能
 
+### 模型对比策略
+项目采用多种机器学习算法进行对比分析：
+- **传统机器学习**: XGBoost、RandomForest、LinearRegression
+- **深度学习**: MLP (多层感知机)
+- **集成学习**: 随机森林和XGBoost的集成优势
+
+### 优化策略
 每个模型都经过以下优化：
-- 早停机制防止过拟合
-- 批量归一化提高训练稳定性
-- Dropout正则化减少过拟合
-- 安全的反变换函数处理异常值
+- **XGBoost**: 早停机制防止过拟合，直方图算法提高训练效率
+- **RandomForest**: 随机特征选择减少过拟合，并行训练提高效率
+- **LinearRegression**: 特征标准化提高数值稳定性
+- **MLP**: 早停机制、批量归一化、Dropout正则化防止过拟合
+
+### 评估指标
+- **R² (决定系数)**: 衡量模型解释方差的能力
+- **RMSE (均方根误差)**: 衡量预测误差的大小
+- **MAE (平均绝对误差)**: 衡量预测误差的绝对值
+
+### 数据变换策略
+- **目标变量**: log1p变换处理偏态分布，StandardScaler标准化
+- **特征处理**: 中位数填充缺失值，保持原始特征值
+- **验证策略**: 80%训练集，20%验证集，固定随机种子确保可重现性
 
 ## 文件说明
 
 ### 训练脚本
 - `MLP_train_X*.py`: 训练各种目标变量的MLP模型
+  - 自动保存最佳模型到对应的模型文件夹
+  - 保存数据预处理统计信息
+  - 支持早停机制和模型验证
 - `X*_train_model.py`: 训练各种目标变量的XGBoost、RandomForest、LinearRegression模型
-- 自动保存最佳模型到对应的模型文件夹
-- 保存数据预处理统计信息
+  - 同时训练三种传统机器学习模型
+  - 自动保存模型、预处理器和配置信息
+  - 生成验证集性能对比和可视化图表
 
 ### 预测脚本
 - `X*_predict.py`: 使用训练好的XGBoost、RandomForest、LinearRegression模型进行预测
-- `X11_MLP_predict.py`: 使用训练好的MLP模型进行预测
-- 自动加载模型和统计信息
-- 输出预测结果到对应的预测文件夹
+  - 自动加载模型、预处理器和配置信息
+  - 输出预测结果到对应的预测文件夹
+  - 支持批量预测和结果统计
+- `X*_MLP_predict.py`: 使用训练好的MLP模型进行预测
+  - 自动加载模型和统计信息
+  - 安全的反变换函数处理异常值
+  - 输出预测结果和统计信息
 
 ### 数据处理脚本
 - `data_analysis.py`: 数据探索性分析
+  - 数据分布可视化
+  - 特征相关性分析
+  - 缺失值统计
 - `data_diagnosis.py`: 数据诊断和清洗
+  - 异常值检测
+  - 数据质量评估
+  - 清洗建议
 - `data_outlier_filter.py`: 异常值检测和处理
-- `data_log_normalization.py`: 对数变换处理
-- `X11_topfeatures.py`:目标变量的降维处理分析top影响参数
+  - 多种异常值检测方法
+  - 自动过滤异常样本
+  - 生成清洗后的数据集
+- `log_normalization.py`: 对数变换处理
+  - 目标变量分布分析
+  - 对数变换效果评估
+  - 变换参数优化
+- `X*_topfeatures.py`: 目标变量的降维处理分析top影响参数
+  - 特征重要性分析
+  - 特征选择策略
+  - 降维效果评估
+
+### 输出文件结构
+```
+X*_model_results/
+├── XGBoost_model.pkl              # XGBoost模型文件
+├── RandomForest_model.pkl         # 随机森林模型文件
+├── LinearRegression_model.pkl     # 线性回归模型文件
+├── target_scaler.pkl              # 目标变量标准化器
+├── feature_scaler.pkl             # 特征标准化器
+├── feature_cols.json              # 特征列名配置
+├── transform_info.json            # 数据变换信息
+├── validation_results.json        # 验证集评估结果
+├── validation_predictions.csv     # 验证集预测结果
+├── validation_statistics.csv      # 验证集统计指标
+└── validation_performance.png     # 性能对比可视化图
+
+X*_model_MLP_*/
+├── model.pt                       # MLP模型权重
+└── stats.json                     # 数据统计信息
+
+X*_predictions/
+├── X*_predictions.csv             # 预测结果文件
+└── prediction_stats.json          # 预测统计信息
+```
 
 ## 注意事项
 
